@@ -61,7 +61,7 @@ class SignUp extends React.Component<any, ISignUpState> {
         />
         <Input.Password placeholder="输入密码" value={password} onChange={this.onChangePassword} />
         <Input.Password placeholder="输确认密码" value={passwordConformation} onChange={this.onChangePasswordConformation}/>
-        <Button type="primary" onClick={this.submit} className="loginButton">注册</Button>
+        <Button type="primary" onClick={this.submit} className="signButton">注册</Button>
         <p>如果你有账号, 请立即<Link to="/login">登录</Link></p>
       </div>
     )

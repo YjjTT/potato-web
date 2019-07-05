@@ -2,7 +2,7 @@
  * @Author: yjjtt 
  * @Date: 2019-07-05 15:24:52 
  * @Last Modified by: yjjtt
- * @Last Modified time: 2019-07-05 16:07:23
+ * @Last Modified time: 2019-07-05 17:30:47
  */
 import * as React from 'react';
 import './App.scss';
@@ -17,7 +17,7 @@ class App extends React.Component {
       <Router>
         <Route exact={true} path="/" component={Index}/>
         <Route path="/login" component={Login}/>
-        <Route path="/singnUp" component={SignUp}/>
+        <Route path="/signUp" component={SignUp}/>
       </Router>
     );
   }

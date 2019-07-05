@@ -10,6 +10,9 @@
   "rules": {
     "ordered-imports": false,
     "jsx-no-lambda": false,
-    "member-access": false
+    "member-access": false,
+    "only-arrow-functions": false,
+    "object-literal-sort-keys": false,
+    "no-console": false
   }
 }

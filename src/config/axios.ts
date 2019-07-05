@@ -1,4 +1,8 @@
 import axios from 'axios';
+// import { createBrowserHistory } from 'history';
+
+
+// const history = createBrowserHistory()
 
 const appId = "ChypEEVc3f3LSDoCJgcJQy3c"
 const appSecret = "CWt3N4GL4dkgcQ2J4SgYowEW"
@@ -34,6 +38,10 @@ instance.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   // Do something with response error
+  if(error.response.status === 401){
+    // history.push('/login')
+    window.location.href = '/login'
+  }
   return Promise.reject(error);
 });
 /* tslint:enable:no-string-literal */

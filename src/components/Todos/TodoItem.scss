@@ -1,0 +1,41 @@
+#todoItem{
+  display: flex;
+  padding: 8px 0 8px 8px;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  &:first-child{
+    border-top: 1px solid #ddd;
+  }
+  &:hover{
+    background: #f9f9f9;
+  }
+  &.editing{
+    background: #fff3d2;
+  }
+  &.completed{
+    >.text{
+      text-decoration: line-through;
+      color: #a9a9a9;
+    }
+  }
+  >.editing, >.text{
+    flex: 1;
+  }
+  >.editing{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 8px;
+    >input{
+      border: 0;
+      outline: none;
+      padding: 0;
+      background: transparent;
+    }
+  }
+  >.editing>.iconWrapper>.anticon{
+      margin-left: 4px;
+      color: #a9a9a9;
+      cursor: pointer;
+  }
+}

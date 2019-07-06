@@ -9,14 +9,14 @@ import './App.scss';
 import { Route, Router } from 'react-router-dom';
 import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
-import Index from './components/Index/Index';
+import Home from './components/Home/Home';
 import history from './config/history';
 
 class App extends React.Component {
   public render() {
     return (
       <Router history={history}>
-        <Route exact={true} path="/" component={Index}/>
+        <Route exact={true} path="/" component={Home}/>
         <Route path="/login" component={Login}/>
         <Route path="/signUp" component={SignUp}/>
       </Router>

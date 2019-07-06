@@ -2,7 +2,7 @@ import * as React from "react";
 import axios from "../../config/axios";
 import history from '../../config/history';
 import { Dropdown, Icon, Menu } from "antd";
-import './Index.scss';
+import './Home.scss';
 import Todos from 'src/components/Todos/Todos';
 
 interface IRouter {
@@ -21,7 +21,7 @@ const menu = (
     <Menu.Item key="2" onClick={logout}><Icon type="logout" />注销</Menu.Item>
   </Menu>
 );
-class Index extends React.Component<IRouter, IIndexSatate> {
+class Home extends React.Component<IRouter, IIndexSatate> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -62,4 +62,4 @@ class Index extends React.Component<IRouter, IIndexSatate> {
     );
   }
 }
-export default Index;
+export default Home;

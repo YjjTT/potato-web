@@ -1,50 +1,65 @@
-import * as React from 'react';
-import axios from '../../config/axios';
-import { Button } from 'antd';
+import * as React from "react";
+import axios from "../../config/axios";
+import history from '../../config/history';
+import { Dropdown, Icon, Menu } from "antd";
+import './Index.scss';
+import Todos from 'src/components/Todos/Todos';
 
 interface IRouter {
-  history: any
+  history: any;
 }
 interface IIndexSatate {
-  user: any
+  user: any;
 }
-class Index extends React.Component<IRouter,IIndexSatate> {
-  constructor(props: any){
+const logout = () => {
+  localStorage.setItem("x-token", "");
+  history.push("/login");
+};
+const menu = (
+  <Menu>
+    <Menu.Item key="1"><Icon type="user" />个人设置</Menu.Item>
+    <Menu.Item key="2" onClick={logout}><Icon type="logout" />注销</Menu.Item>
+  </Menu>
+);
+class Index extends React.Component<IRouter, IIndexSatate> {
+  constructor(props: any) {
     super(props);
     this.state = {
       user: {}
-    }
+    };
   }
 
-  async componentWillMount(){
-    await this.getMe()
+  async componentWillMount() {
+    await this.getMe();
   }
 
   getMe = async () => {
-    try{
-      const response = await axios.get('me')
+    try {
+      const response = await axios.get("me");
       this.setState({
         user: response.data
-      })
-    }catch(e){
-      console.log(e)
-      // if(e.response.status === 401){
-      //   this.props.history.push('/login')
-      // }
+      });
+    } catch (e) {
+      console.log(e);
     }
-  }
+  };
 
-  logout = () => {
-    localStorage.setItem('x-token', '')
-    this.props.history.push('/login')
-  }
-  public render (){
-    return(
-      <div className="container">
-        <p>欢迎, {this.state.user.account}</p>
-        <Button onClick={this.logout}>注销</Button>
+  public render() {
+    return (
+      <div className="container" id="index">
+        <header>
+          <span className="logo">LOGO</span>
+          <Dropdown overlay={menu}>
+            <span>
+              {this.state.user.account} <Icon type="down" style={{ marginLeft: 4}}/>
+            </span>
+          </Dropdown>
+        </header>
+        <main>
+          <Todos />
+        </main>
       </div>
-    )
+    );
   }
 }
 export default Index;

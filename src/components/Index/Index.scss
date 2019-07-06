@@ -1,0 +1,10 @@
+#index {
+  max-width: 1000px;
+  >header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #DDD;
+    padding: 16px;
+  }
+}

@@ -31,7 +31,8 @@ export default class Todos extends React.Component<any, ITodosState> {
   getTodos = async () => {
     try{
       const res = await axios.get('todos')
-      this.setState({ todos: res.data.resources })
+      const todos = res.data.resources.map((item:any)=>Object.assign({},item,{editing: false}))
+      this.setState({ todos })
     }catch(e) {
       console.log(e)
     }
@@ -52,13 +53,30 @@ export default class Todos extends React.Component<any, ITodosState> {
       console.log(e)
     }
   }
+  toEditing = (id: number) => {
+    const { todos } = this.state
+    const newTodos = todos.map((item)=>{
+      if(id === item.id){
+        return Object.assign({},item,{editing:true})
+      }else{
+        return Object.assign({},item,{editing:false})
+      }
+    })
+    this.setState({ todos: newTodos })
+  }
   public render(){
     return(
       <div className="container" id="todos">
         <TodoInput addTodo={(params:any) => this.addTodo(params)} />
         <main>
           {
-            this.state.todos.map((item, index)=> <TodoItem key={item.id} {...item} updateTodo={this.updateTodo}/> )
+            this.state.todos.map((item, index)=> 
+            <TodoItem 
+              key={item.id} 
+              {...item} 
+              updateTodo={this.updateTodo}
+              toEditing={this.toEditing}
+              /> )
           }
         </main>
       </div>

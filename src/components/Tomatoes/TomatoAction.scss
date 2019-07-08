@@ -1,0 +1,12 @@
+#TomatoAction{
+  .countDownWrapper{
+    position: relative;
+  }
+  .abort{
+    position: absolute;
+    right: -6px;
+    top: -6px;
+    background: white;
+    cursor: pointer;
+  }
+}

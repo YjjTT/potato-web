@@ -2,8 +2,9 @@ import * as React from 'react';
 import './Tomatoes.scss';
 import { Button, Input, Icon } from 'antd';
 import axios from '../../config/axios'
-// import CountDown from './CountDown'
-import CountDown from './CountDownHook'
+import CountDown from './CountDown'
+import './TomatoAction.scss'
+// import CountDown from './CountDownHook'
 
 interface ITomatoActionProps {
   startTomato: ()=> void
@@ -32,7 +33,7 @@ class TomatoAction extends React.Component<ITomatoActionProps, ITomatoActionStat
 		}
   }
   onFinish = () => {
-    this.render()
+    this.forceUpdate()
   }
   
   addDescription = async () => {
@@ -70,11 +71,16 @@ class TomatoAction extends React.Component<ITomatoActionProps, ITomatoActionStat
             }}
             onKeyUp={this.onKeyUp}
           />
-          <Icon type="close-circle" />
+          <Icon type="close-circle" className="abort" />
         </div>
       }else if (timeNow - startAt < duration){
         const timer = duration - timeNow + startAt
-        html = <CountDown timer={timer} onFinish={this.onFinish} />
+        html = (
+          <div className="countDownWrapper">
+            <CountDown timer={timer} onFinish={this.onFinish} duration={duration} />
+            <Icon type="close-circle" className="abort" />
+          </div>
+        )
       }
     }
     return(

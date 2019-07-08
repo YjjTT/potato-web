@@ -12,7 +12,7 @@ const CountDownHook:FunctionComponent<ICountDownProps> = (props) => {
   
   const min = Math.floor(countDown/(1000*60))
   const sec = Math.floor(countDown/1000%60)
-  const time = `${min}:${sec<10?`0${sec}`:sec}`
+  const time = `${min<0?`0${min}`:min}:${sec<10?`0${sec}`:sec}`
 
   useEffect (()=>{
     document.title = `${time} - JT番茄App`
@@ -20,6 +20,7 @@ const CountDownHook:FunctionComponent<ICountDownProps> = (props) => {
       setCountDown(countDown - 1000)
       if(countDown < 0){
         props.onFinish()
+        document.title = `JT番茄App`
         clearInterval(timerID)
       }
     }, 1000)

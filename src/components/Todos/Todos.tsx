@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux'
-import { initTodos } from '../../redux/actions';
+import { initTodos } from '../../redux/actions/todos';
 import TodoInput from './TodoInput';
 import axios from '../../config/axios';
 import './Todos.scss';
@@ -31,7 +31,6 @@ class Todos extends React.Component <any> {
     try{
       const res = await axios.get('todos')
       const todos = res.data.resources.map((item:any)=>Object.assign({},item,{editing: false}))
-      console.log(todos)
       this.props.initTodos(todos)
     }catch(e) {
       console.log(e)

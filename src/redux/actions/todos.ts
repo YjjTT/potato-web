@@ -1,4 +1,4 @@
-import * as type from './actionTypes'
+import * as type from '../actionTypes'
 
 export const addTodo = (payload: any) => {
   return {
@@ -8,7 +8,6 @@ export const addTodo = (payload: any) => {
 }
 
 export const initTodos = (payload:any[]) => {
-  console.log(payload)
   return {
     type: type.INIT_TODOS,
     payload
@@ -29,9 +28,5 @@ export const editTodo = (payload:number) => {
   }
 }
 
-export const addTomato = (payload: any) => {
-  return {
-    type: type.ADD_TOMATOES,
-    payload
-  }
-}
+
+

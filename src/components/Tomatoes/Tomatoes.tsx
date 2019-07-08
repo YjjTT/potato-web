@@ -17,6 +17,6 @@ const mapStateToProps = (state:any, ownProps:any) => ({
   ...ownProps
 })
 const mapDispatchToProps = {
-
+  
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Tomatoes);

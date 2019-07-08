@@ -28,3 +28,10 @@ export const editTodo = (payload:number) => {
     payload
   }
 }
+
+export const addTomato = (payload: any) => {
+  return {
+    type: type.ADD_TOMATOES,
+    payload
+  }
+}

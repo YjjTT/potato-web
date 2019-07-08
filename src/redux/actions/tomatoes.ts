@@ -14,3 +14,10 @@ export const initTomato = (payload: any[]) => {
     payload
   }
 }
+
+export const updateTomato = (payload:any) => {
+  return {
+    type: type.UPDATE_TOMATO,
+    payload
+  }
+}

@@ -4,6 +4,7 @@ import history from '../../config/history';
 import { Dropdown, Icon, Menu } from "antd";
 import './Home.scss';
 import Todos from 'src/components/Todos/Todos';
+import Tomatoes from '../Tomatoes/Tomatoes';
 
 interface IRouter {
   history: any;
@@ -56,6 +57,7 @@ class Home extends React.Component<IRouter, IIndexSatate> {
           </Dropdown>
         </header>
         <main>
+          <Tomatoes />
           <Todos />
         </main>
       </div>

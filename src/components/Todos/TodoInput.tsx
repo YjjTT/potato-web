@@ -5,26 +5,25 @@ import {addTodo} from '../../redux/action';
 import axios from '../../config/axios';
 
 interface ITodoInputState {
-  description: string
+	description: string;
 }
 
 interface ITodoInputProps {
-  addTodo: (payload: any)=> any
+	addTodo: (payload:any) => any;
 }
 
 class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
-  constructor(props: any){
+  constructor(props:any){
     super(props);
     this.state = {
       description: ''
     }
   }
-  onKeyUps = (e:any) => {
-    console.log(e.KeyCode)
-    if(e.KeyCode === 13 && this.state.description !== ''){
+  onKeyUp = (e:any) => {
+		if(e.keyCode === 13 && this.state.description !== ''){
       this.addTodo()
-    }
-  }
+		}
+	}
   submit = () => {
     if(this.state.description !== ''){
       this.addTodo()
@@ -33,7 +32,7 @@ class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
   addTodo = async ()=>{
     try{
       const res = await axios.post('todos', {description: this.state.description})
-      this.props.addTodo({description: res.data.resource})
+      this.props.addTodo(res.data.resource)
     }catch (e){
       console.log(e)
     }
@@ -52,7 +51,7 @@ class TodoInput extends React.Component<ITodoInputProps,ITodoInputState> {
           onChange={(e) =>{
             this.setState({ description: e.target.value })
           }}
-          onKeyUp={this.onKeyUps}
+          onKeyUp={this.onKeyUp}
         />
       </div>
     )

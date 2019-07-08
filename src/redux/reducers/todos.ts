@@ -3,9 +3,8 @@ import * as type from "../actionTypes";
 export default (state:any[] = [], action:any):any => {
   switch (action.type) {
     case type.ADD_TODO:
-      return [state, ...action.payload];
+      return [...state, ...action.payload];
     case type.INIT_TODOS:
-      console.log(action.payload)
       return [...action.payload];
     case type.UPDATE_TODO:
       return state.map(item => {

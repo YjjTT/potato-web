@@ -35,11 +35,11 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
   editTodo = () => {
     this.props.editTodo(this.props.id)
   }
-  KeyUpHandle = (e:any) => {
-    if(e.KeyCode === 13 && this.state.editText !== ''){
-      this.updateTodo({description: this.state.editText})
-    }
-  }
+  onKeyUp = (e:any)=>{
+		if(e.keyCode === 13 && this.state.editText !== ''){
+			this.updateTodo({description: this.state.editText})
+		}
+	}
   submit = () => {
     if(this.state.editText !== ''){
       this.updateTodo({description: this.state.editText})
@@ -51,7 +51,7 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
         <input type="text" 
         value={this.state.editText} 
         onChange={e=>this.setState({ editText: e.target.value })}
-        onKeyUp={this.KeyUpHandle}
+        onKeyUp={this.onKeyUp}
         />
         <div className="iconWrapper">
           <Icon type="enter" onClick={this.submit}/>

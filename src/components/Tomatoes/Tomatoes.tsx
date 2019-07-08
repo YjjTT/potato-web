@@ -8,7 +8,7 @@ import { addTomato, initTomato } from '../../redux/actions/tomatoes'
 
 interface ITomatoProps{
   addTomato: (payload:any)=>any
-  initTomato: (payload: any)=>any[]
+  initTomato: (payload: any[])=>any[]
   tomatoes: any[]
 }
 class Tomatoes extends React.Component <ITomatoProps> {
@@ -22,7 +22,6 @@ class Tomatoes extends React.Component <ITomatoProps> {
     try{
       const res = await axios.get('tomatoes')
       this.props.initTomato(res.data.resources)
-      console.log(res)
     }catch(e){
       throw new Error(e)
     }
@@ -45,7 +44,8 @@ class Tomatoes extends React.Component <ITomatoProps> {
         <TomatoAction 
           startTomato={this.startTomato}
           unfinishedTomato={this.unfinishedTomato}
-          />
+        />
+        <div>{this.unfinishedTomato && this.unfinishedTomato.id}</div>
       </div>
     )
   }

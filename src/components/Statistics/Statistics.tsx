@@ -52,7 +52,27 @@ class Statistics extends React.Component<IStatisticsProps,IStatisticsState>{
       <div className="statistics" id="statistics">
         <ul>
           <li onClick={()=>{this.setState({tabIndex:1})}} className={this.state.tabIndex===1?"active":''}>
-              统计
+            <div className="desc">
+              <span className="title">统计</span>
+              <span className="subtitle">当月累计完成番茄</span>
+              <span className="quantity">{this.finishTomatoes.length}</span>
+            </div>
+            <div className="chart">
+              <svg>
+              {
+                this.finishTomatoes.map((tomatoes,index)=>
+                  <rect 
+                  key={index}
+                  fill="rgba(215,78,78,0.5)" 
+                  x={(index+1)*30}
+                  y="0"
+                  width="16"
+                  height="60"
+                  />)
+              }
+              </svg>
+            </div>
+            
           </li>
 
           <li onClick={()=>{this.setState({tabIndex:2})}} className={this.state.tabIndex===2?"active":''}>

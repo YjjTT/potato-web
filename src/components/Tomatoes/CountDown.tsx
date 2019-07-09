@@ -1,5 +1,6 @@
 import * as React from 'react'
 import './CountDown.scss';
+import {notification} from 'antd'
 interface ICountDownProps {
   timer: number
   duration: number
@@ -17,6 +18,17 @@ class CountDown extends React.Component<ICountDownProps,ICountDownState> {
       countDown: this.props.timer
     }
   }
+  openNotification = () => {
+    notification.open({
+      message: '恭喜你',
+      description:
+        '本次番茄时间已到',
+      onClick: () => {
+        console.log('Notification Clicked!');
+      },
+    });
+  };
+  
   componentDidMount(){
     timer = setInterval(()=>{
       const times = this.state.countDown
@@ -24,6 +36,7 @@ class CountDown extends React.Component<ICountDownProps,ICountDownState> {
       document.title = `${this.countDown} - JT番茄App`
       if(times < 1000){
         this.props.onFinish()
+        this.openNotification()
         document.title = `JT番茄App`
         clearInterval(timer)
       }

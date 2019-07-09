@@ -3,8 +3,8 @@ import axios from "../../config/axios";
 import history from '../../config/history';
 import { Dropdown, Icon, Menu } from "antd";
 import './Home.scss';
-// import Todos from 'src/components/Todos/Todos';
-// import Tomatoes from '../Tomatoes/Tomatoes';
+import Todos from 'src/components/Todos/Todos';
+import Tomatoes from '../Tomatoes/Tomatoes';
 import Statistics from '../Statistics/Statistics';
 import { connect } from 'react-redux'
 import { initTodos } from '../../redux/actions/todos';
@@ -74,10 +74,10 @@ class Home extends React.Component<any, IIndexSatate> {
             </span>
           </Dropdown>
         </header>
-        {/* <main>
+        <main>
           <Tomatoes />
           <Todos />
-        </main> */}
+        </main>
         <Statistics />
       </div>
     );

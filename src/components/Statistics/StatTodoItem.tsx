@@ -3,12 +3,14 @@ import { format } from 'date-fns'
 import './StatTodoItem.scss';
 import {connect} from 'react-redux'
 import { updateTodo } from '../../redux/actions/todos'
+import { updateTomato } from '../../redux/actions/tomatoes'
 import axios from '../../config/axios'
 
 interface IStatTodoItemProps{
   todo: any,
   itemType: string,
-  updateTodo: (payload: any)=>void
+  updateTodo: (payload: any)=>void,
+  updateTomato: (payload:any) => void
 }
 class StatTodoItem extends React.Component<IStatTodoItemProps>{
   constructor(props:any){
@@ -20,6 +22,14 @@ class StatTodoItem extends React.Component<IStatTodoItemProps>{
       this.props.updateTodo(res.data.resource)
     }catch(e){
       throw new Error(e);
+    }
+  }
+  updateTomato = async (params:any) => {
+    try{
+      const res = await axios.put(`tomatoes/${this.props.todo.id}`,params)
+      this.props.updateTomato(res.data.resource)
+    }catch(e){
+      throw new Error(e)
     }
   }
   public render(){
@@ -47,6 +57,18 @@ class StatTodoItem extends React.Component<IStatTodoItemProps>{
           })}>恢复</span>
         </div>
       )
+    }else if (itemType === 'abortTomatoes'){
+      formatType = "YYYY-MM-DD HH:MM"
+
+    }else if(itemType === 'finishTomatoes'){
+      formatType = 'HH:MM'
+      action = (
+        <div className="action">
+          <span onClick={()=>this.updateTomato({
+            aborted: true
+          })}>删除</span>
+        </div>
+      )
     }
     return (
       <div className="statTodoItem" id="statTodoItem">
@@ -64,5 +86,6 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 })
 const mapDispatchToProps = {
   updateTodo,
+  updateTomato
 }
 export default connect(mapStateToProps,mapDispatchToProps)(StatTodoItem);

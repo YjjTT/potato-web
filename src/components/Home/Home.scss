@@ -4,10 +4,26 @@
   padding: 0 16px;
   >header{
     display: flex;
-    justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     border-bottom: 1px solid #DDD;
-    padding: 16px 0;
+    padding: 8px 0;
+    position: relative;
+    text-align: center;
+    img{
+      margin-right: 4px;
+      height: 35px;
+      background: white;
+    }
+    h1{
+      font-size: 16px;
+      margin-top: 6px;
+      font-weight: 450;
+    }
+    .userInfo{
+      position: absolute;
+      right: 16px;
+    }
   }
   >main{
     padding: 16px 0;

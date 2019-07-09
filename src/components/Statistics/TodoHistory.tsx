@@ -55,7 +55,7 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
       )
     })
     return (
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="1" type="card">
         <TabPane tab="已完成的任务" key="1">
           <div className="todoHistory" id="todoHistory">
             {finishTodoList}

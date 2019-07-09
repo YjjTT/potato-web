@@ -1,8 +1,46 @@
 #statistics{
   ul{
     display: flex;
+    margin-bottom: 8px;
     li{
       flex: 1;
+      border: 1px solid #e4e4e4;
+      height: 85px;
+      position: relative;
+      cursor: pointer;
+      background: #fff;
+      .desc{
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        padding: 10px 10px 0;
+        .title{
+          font-size: 14px;
+          color: #666;
+        }
+        .subtitle{
+          font-size: 12px;
+          line-height: 12px;
+          color: #999;
+          padding: 6px 0 2px;
+        }
+        .quantity{
+          font-size: 30px;
+          color: #666;
+          line-height: 34px;
+        }
+      }
+      .polygon{
+        width: 100%;
+        height: 60px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+    }
+    .active{
+      background-color: #f4f4f4;
     }
   }
 }

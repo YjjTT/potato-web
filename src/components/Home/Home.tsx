@@ -9,6 +9,7 @@ import Statistics from '../Statistics/Statistics';
 import { connect } from 'react-redux'
 import { initTodos } from '../../redux/actions/todos';
 import { initTomato } from '../../redux/actions/tomatoes'
+import imageUrl from '../../res/pomato.png';
 interface IIndexSatate {
   user: any;
 }
@@ -67,9 +68,10 @@ class Home extends React.Component<any, IIndexSatate> {
     return (
       <div className="container" id="index">
         <header>
-          <span className="logo">LOGO</span>
+          <img src={imageUrl} alt="/"/>
+          <h1>JT番茄闹钟</h1>
           <Dropdown overlay={menu}>
-            <span>
+            <span className="userInfo">
               {this.state.user.account} <Icon type="down" style={{ marginLeft: 4}}/>
             </span>
           </Dropdown>

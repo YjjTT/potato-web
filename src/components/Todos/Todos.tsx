@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import TodoInput from './TodoInput';
 import './Todos.scss';
 import TodoItem from './TodoItem';
+import { Empty } from 'antd';
 
 class Todos extends React.Component <any> {
   constructor(props:any){
@@ -26,8 +27,20 @@ class Todos extends React.Component <any> {
         <TodoInput />
         <div className="todoList">
           {
+            this.unCompletedTodos.length!==0?
             this.unCompletedTodos.map((item:any)=> 
-            <TodoItem key={item.id} {...item} /> )
+            <TodoItem key={item.id} {...item} /> ):
+            <Empty
+              image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+              imageStyle={{
+                height: 60,
+              }}
+              description={
+                <span>
+                暂无未完成的任务
+                </span>
+              }
+            />
           }
           {/* {
             this.completedTodos.map((item:any)=> 

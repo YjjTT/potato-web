@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, Icon, Button } from 'antd';
+import { Input, Icon, Button, message } from 'antd';
 import axios from 'src/config/axios';
 import  { Link } from 'react-router-dom';
 import './Login.scss';
@@ -22,6 +22,7 @@ class Login extends React.Component<any, ILoginState> {
     newState[key] = value
     this.setState(newState)
   }
+  
   submit = async () => {
     const { account, password } = this.state
     try{
@@ -31,7 +32,8 @@ class Login extends React.Component<any, ILoginState> {
       })
       this.props.history.push('/')
     }catch(e){
-      console.log(e)
+      console.log(e.response.data.errors)
+      message.error(e.response.data.errors);
     }
   }
  

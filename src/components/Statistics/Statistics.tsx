@@ -7,6 +7,7 @@ import _ from 'lodash';
 import TodoHistory from './TodoHistory';
 import TomatoHistory from './TomatoHistory/TomatoHistory'
 import TaskStatistics from './TaskStatsitics/TaskStatistics'
+import {Empty} from 'antd'
 
 interface IStatisticsProps {
   todos: any[],
@@ -48,6 +49,19 @@ class Statistics extends React.Component<IStatisticsProps,IStatisticsState>{
   }
 
   public render(){
+    const EmptyData = (
+      <Empty
+        image="https://gw.alipayobjects.com/mdn/miniapp_social/afts/img/A*pevERLJC9v0AAAAAAAAAAABjAQAAAQ/original"
+        imageStyle={{
+          height: 60,
+        }}
+        description={
+          <span>
+          暂无数据
+          </span>
+        }
+      />
+    )
     return(
       <div className="statistics" id="statistics">
         <ul>
@@ -93,9 +107,9 @@ class Statistics extends React.Component<IStatisticsProps,IStatisticsState>{
             <Polygon data={this.dailyTodo} totalFinishedCount={this.finishedTodos.length}/>
           </li>
         </ul>
-          {this.state.tabIndex===1 && <TaskStatistics />}
-          {this.state.tabIndex===2 && <TomatoHistory />}
-          {this.state.tabIndex===3 && <TodoHistory />}
+          {this.state.tabIndex===1 && (this.finishTomatoes.length!==0?<TaskStatistics />:EmptyData)}
+          {this.state.tabIndex===2 &&(this.finishTomatoes.length!==0?<TomatoHistory />:EmptyData)}
+          {this.state.tabIndex===3 && (this.finishedTodos.length!==0?<TodoHistory />:EmptyData)}
       </div>
     )
   }

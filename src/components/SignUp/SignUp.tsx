@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Input, Icon, Button } from 'antd';
+import { Input, Icon, Button,message } from 'antd';
 import axios from 'src/config/axios';
 import  { Link } from 'react-router-dom';
 import './SignUp.scss';
@@ -42,9 +42,9 @@ class SignUp extends React.Component<any, ISignUpState> {
         password, 
         password_confirmation: passwordConformation
       })
-      console.log('成功')
+      this.props.history.push('/login')
     }catch(e){
-      console.log(e)
+      message.error(e.response.data.errors);
     }
   }
  

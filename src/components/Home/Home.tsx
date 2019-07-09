@@ -3,12 +3,12 @@ import axios from "../../config/axios";
 import history from '../../config/history';
 import { Dropdown, Icon, Menu } from "antd";
 import './Home.scss';
-import Todos from 'src/components/Todos/Todos';
-import Tomatoes from '../Tomatoes/Tomatoes';
-
-interface IRouter {
-  history: any;
-}
+// import Todos from 'src/components/Todos/Todos';
+// import Tomatoes from '../Tomatoes/Tomatoes';
+import Statistics from '../Statistics/Statistics';
+import { connect } from 'react-redux'
+import { initTodos } from '../../redux/actions/todos';
+import { initTomato } from '../../redux/actions/tomatoes'
 interface IIndexSatate {
   user: any;
 }
@@ -22,7 +22,7 @@ const menu = (
     <Menu.Item key="2" onClick={logout}><Icon type="logout" />注销</Menu.Item>
   </Menu>
 );
-class Home extends React.Component<IRouter, IIndexSatate> {
+class Home extends React.Component<any, IIndexSatate> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -32,6 +32,8 @@ class Home extends React.Component<IRouter, IIndexSatate> {
 
   async componentWillMount() {
     await this.getMe();
+    await this.getTodos();
+    await this.getTomatoes();
   }
 
   getMe = async () => {
@@ -44,7 +46,23 @@ class Home extends React.Component<IRouter, IIndexSatate> {
       console.log(e);
     }
   };
-
+  getTodos = async () => {
+    try{
+      const res = await axios.get('todos')
+      const todos = res.data.resources.map((item:any)=>Object.assign({},item,{editing: false}))
+      this.props.initTodos(todos)
+    }catch(e) {
+      console.log(e)
+    }
+  }
+  getTomatoes = async () => {
+    try{
+      const res = await axios.get('tomatoes')
+      this.props.initTomato(res.data.resources)
+    }catch(e){
+      throw new Error(e)
+    }
+  }
   public render() {
     return (
       <div className="container" id="index">
@@ -56,12 +74,20 @@ class Home extends React.Component<IRouter, IIndexSatate> {
             </span>
           </Dropdown>
         </header>
-        <main>
+        {/* <main>
           <Tomatoes />
           <Todos />
-        </main>
+        </main> */}
+        <Statistics />
       </div>
     );
   }
 }
-export default Home;
+const mapStateToProps = (state:any, ownProps:any) => ({
+  ...ownProps
+})
+const mapDispatchToProps = {
+  initTodos,
+  initTomato
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Home);

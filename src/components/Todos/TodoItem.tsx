@@ -25,6 +25,9 @@ class TodoItem extends React.Component<ITodoItemProps, ITodoItemState> {
     }
   }
   updateTodo = async (params: any) => {
+    if(params.completed){
+      params.completed_at = new Date()
+    }
     try{
       const res = await axios.put(`todos/${this.props.id}`, params)
       this.props.updateTodo(res.data.resource)

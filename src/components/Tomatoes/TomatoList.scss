@@ -1,29 +1,29 @@
-#tomatoList{
+#tomatoList {
   margin-top: 16px;
   border-top: 1px solid #ddd;
-  .dailyTomato{
+  .dailyTomato {
     padding-top: 16px;
-    .title{
+    .title {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 4px;
     }
-    .dateTime{
+    .dateTime {
       color: #999;
       font-size: 16px;
     }
-    .finishedCount{
+    .finishedCount {
       color: #666;
       font-size: 12px;
     }
-    .TomatoItem{
+    .TomatoItem {
       font-size: 14px;
       margin: 4px 0;
-      .timeRange{
+      .timeRange {
         color: #999999;
       }
-      .content{
+      .content {
         margin-left: 8px;
         color: #222;
       }
